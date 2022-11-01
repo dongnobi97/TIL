@@ -1,0 +1,37 @@
+오늘은 저의 두번째 TIL입니다.
+
+금일은 기초 강의였던 개발 종합반 3주차 마무리와 4주차, 그리고 5주차까지 강의를 들었습니다.
+
+1. 3주차 강의
+
+- mangoDB가 어떤 역할을 하는지? 그리고 mangoDB에 데이터를 어떤 방법으로 넣는지도 배우게 되었습니다.
+-DB연결하기 & 데이터 넣기 -> 
+ # 'users'라는 collection에 {'name':'bobby','age':21}를 넣습니다.
+db.users.insert_one({'name':'bobby','age':21})
+db.users.insert_one({'name':'kay','age':27})
+db.users.insert_one({'name':'john','age':30})
+
+-모든 결과 값을 보기 ->
+all_users = list(db.users.find({},{'_id':False}))
+
+print(all_users[0])         # 0번째 결과값을 보기
+print(all_users[0]['name']) # 0번째 결과값의 'name'을 보기
+
+for user in all_users:      # 반복문을 돌며 모든 결과값을 보기
+    print(user)
+    
+ -특정 결과 값을 뽑아 보기 ->
+user = db.users.find_one({'name':'bobby'})
+print(user)
+
+후기: 숙제로 지니뮤직을 스크래핑 하는 것이였는데..강의전체내용을 다 마스터하지못해서 그런지 생각보다 어려워서 20분동안 계속 하다가
+해설 영상을 보면서 같이 따라했습니다.
+
+2. 4주차 강의
+
+4주차에서는 화성에 땅사기 , 스파르타피디아 등을 통하여 학습을 했습니다.
+
+*항상 중요한 것은 index.html파일은 폴더를 잘 분류해서 넣어야 실행이 된다는 것입니다.
+실제 사례로 제가 오늘 잘못넣어서 웹 사이트가 열리지 않았습니다.. 오류를 보면서 다시 발전하겠습니다.
+
+5주차 내용은 현재 TIL을 작성하며 수강중이라 내일 TIL에 첨부할 예정입니다.
