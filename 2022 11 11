@@ -1,0 +1,82 @@
+파이썬 기초 문법 마지막 강의
+
+1-1 f-string
+>> 변수를 더 직관적인 문자열 만들기
+
+scores = [
+    {'name':'영수','score':70},
+    {'name':'영희','score':65},
+    {'name':'기찬','score':75},
+    {'name':'희수','score':23},
+    {'name':'서경','score':99},
+    {'name':'미주','score':100},
+    {'name':'병태','score':32}    
+]
+
+해당 코드를 간결하게 출력한다면?
+
+for s in scores:
+    name = s['name']
+    score = str(s['score'])
+    print(f'{name}은 {score}점입니다')
+    
+1-2 예외처리
+- try - except 문
+>> 에러가 있어도 건너뛰게 할 수 있는 방법
+
+예시
+
+people = [
+    {'name': 'bob', 'age': 20},
+    {'name': 'carry', 'age': 38},
+    {'name': 'john', 'age': 7},
+    {'name': 'smith', 'age': 17},
+    {'name': 'ben', 'age': 27},
+    {'name': 'bobby', 'age': 57},
+    {'name': 'red', 'age': 32},
+    {'name': 'queen', 'age': 25}
+]
+
+for person in people:
+    if person['age'] > 20:
+        print (person['name'])
+        
+에러 해결 코드
+
+for person in people:
+    try:
+        if person['age'] > 20:
+            print (person['name'])
+    except:
+        name = person['name']
+        print(f'{name} - 에러입니다')
+        
+  1-3 파일 불러오기 
+  
+  - 여러개 파일로 분리하려면 >>  main_test.py
+  
+  from main_func import *
+
+say_hi()
+
+-main_func.py
+
+def say_hi():
+	print('안녕!')
+  
+  1-4 한줄의 마법
+  
+  -if문 - 삼항연산자
+
+만약 조건에 따라 다른 값을 변수에 저장하고 싶다면?
+
+num = 3
+
+if num%2 == 0:
+    result = "짝수"
+else:
+    result = "홀수"
+
+print(f"{num}은 {result}입니다."
+
+이렇게 파이썬 기초문법은 마치고 다른 
