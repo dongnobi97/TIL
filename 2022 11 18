@@ -1,0 +1,112 @@
+11월 18일 알고리즘 공부를 이어서 하였습니다.
+
+1.링크드 리스트 구현
+
+*링크드 리스트 원소 찾기/ 원소 추가
+
+>> 링크드 리스트에서 index번째 원소를 반환하기
+
+함수
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class LinkedList:
+    def __init__(self, value):
+        self.head = Node(value)
+
+    def append(self, value):
+        cur = self.head
+        while cur.next is not None:
+            cur = cur.next
+        cur.next = Node(value)
+
+    def print_all(self):
+        cur = self.head
+        while cur is not None:
+            print(cur.data)
+            cur = cur.next
+
+    def get_node(self, index):
+        return "index 번째 노드를 반환해보세요!"
+
+linked_list = LinkedList(5)
+linked_list.append(12)
+linked_list.get_node(0) # -> 5를 들고 있는 노드를 반환해야 함
+
+
+#해결방법
+
+		...
+		def get_node(self, index):
+        node = self.head
+        count = 0
+        while count < index:
+            node = node.next
+            count += 1
+        return node
+		...
+    
+    >> 노드를 따라가면서 값을 찾기,head에 저장되어있는 노드를 node라는 변수에 감고, count 라는 인덱스를 저장하기 위한 변수를 저장
+    그리고 count가 index가 될 때까지 node의 next값을 node에 대입하고 count를 증가, 해당 과정을 count가 index가 아닐떄 까지 반복
+    
+    
+    *링크드 리스트 원소 추가하기
+    
+    함수
+    
+    class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class LinkedList:
+    def __init__(self, value):
+        self.head = Node(value)
+
+    def append(self, value):
+        cur = self.head
+        while cur.next is not None:
+            cur = cur.next
+        cur.next = Node(value)
+
+    def print_all(self):
+        cur = self.head
+        while cur is not None:
+            print(cur.data)
+            cur = cur.next
+
+    def get_node(self, index):
+        node = self.head
+        count = 0
+        while count < index:
+            node = node.next
+            count += 1
+        return node
+
+    def add_node(self, index, value):
+        return "index 번째 Node 뒤에 value 를 추가하세요!"
+
+
+linked_list = LinkedList(5)
+linked_list.append(12)
+linked_list.add_node(0, 3)
+linked_list.print_all()
+
+>> 해결방법
+
+		...
+		def add_node(self, index, value):
+        new_node = Node(value)
+        node = self.get_node(index - 1)
+        next_node = node.next
+        node.next = new_node
+        new_node.next = next_node
+		...
+    
+    어느 코드에서나 index - 1처럼 -1하는 코드가 있으면, 0의경우는 따로 걱정을 해야함,
+    0 이 입력되는 경우 호출되지 않아 원하지 않게 동작해버릴 수 있음
