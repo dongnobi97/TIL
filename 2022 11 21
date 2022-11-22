@@ -1,0 +1,129 @@
+알고리즘 강의 2주차
+
+1. 링크드 리스트 문제
+
+(1) 두 링크드 리스트의 합 계산
+
+문제 : [6] -> [7] -> [8]
+       [3] -> [5] -> [4]
+       
+       class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class LinkedList:
+    def __init__(self, value):
+        self.head = Node(value)
+
+    def append(self, value):
+        cur = self.head
+        while cur.next is not None:
+            cur = cur.next
+        cur.next = Node(value)
+
+
+def get_linked_list_sum(linked_list_1, linked_list_2):
+    # 구현해보세요!
+    return 1032
+
+
+linked_list_1 = LinkedList(6)
+linked_list_1.append(7)
+linked_list_1.append(8)
+
+linked_list_2 = LinkedList(3)
+linked_list_2.append(5)
+linked_list_2.append(4)
+
+print(get_linked_list_sum(linked_list_1, linked_list_2))
+       
+해결방법:
+>> 각 링크드 리스트의 헤드를 따라가면서, 자릿수에 맞게 덧셈 실행
+단, 자리수에 맞게 더하기 위해서는 총액에서 10을 곱한 다음 현재 노드의값을 더해주면 됨
+
+코드
+
+
+...
+def get_linked_list_sum(linked_list_1, linked_list_2):
+		sum_1 = 0
+    head_1 = linked_list_1.head
+    while head_1 is not None:
+        sum_1 = sum_1 * 10 + head_1.data
+        head_1 = head_1.next
+
+    sum_2 = 0
+    head_2 = linked_list_2.head
+    while head_2 is not None:
+        sum_2 = sum_2 * 10 + head_2.data
+        head_2 = head_2.next
+
+    return sum_1 + sum_2
+...
+
+(2) 이진탐색
+이진 탐색 vs 순차탐색
+
+이진탐색 = 업다운게임
+
+예시.
+finding_target = 14
+finding_numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+
+
+def is_existing_target_number_sequential(target, array):
+    for number in array:
+        if target == number:
+            return True
+
+    return False
+
+
+result = is_existing_target_number_sequential(finding_target, finding_numbers)
+print(result)  # True
+
+원하는 숫자 찾기 코드
+
+finding_target = 14
+finding_numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+
+
+def is_existing_target_number_binary(target, array):
+    # 구현해보세요!
+    return False
+
+
+result = is_existing_target_number_binary(finding_target, finding_numbers)
+print(result)
+
+#해결방법
+>> 업다운 게임의 개념을 그대로 사용, 업이면 9~16을 시도 다운이면 1~7을 시도
+정답이라면 true반환
+
+#최종코드 
+
+finding_target = 14
+finding_numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+
+
+def is_existing_target_number_binary(target, array):
+    current_min = 0
+    current_max = len(array) - 1
+    current_guess = (current_min + current_max) // 2
+
+    while current_min <= current_max:
+        if array[current_guess] == target:
+            return True
+        elif array[current_guess] < target:
+            current_min = current_guess + 1
+        else:
+            current_max = current_guess - 1
+        current_guess = (current_min + current_max) // 2
+
+    return False
+
+
+result = is_existing_target_number_binary(finding_target, finding_numbers)
+print(result)
