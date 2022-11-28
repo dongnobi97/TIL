@@ -1,0 +1,60 @@
+금일은 발표 전 마지막으로 팀원들끼리 최종 정리를 하는 시간을 가졌습니다.
+
+1. 정규변환식
+>> 계좌에서 마스킹 처리를 위해 꼭 필요한 부분이었는데 이 부분을 보완하였고, 어떻게 사용하는지 알게되었습니다.
+
+#작성코드
+@Override
+    public String toString() {
+        return "이름: " +name + "|" + "은행명: " + bankName + "|"+ "계좌번호: " +  accountNum.replaceAll(LAST_10_CHAR_PATTERN, "**********") +"|"+ "잔고: " + balance;
+        
+2. 오류사항들
+
+2-1 계좌 삭제 문제
+계좌삭제 기능이 있었는데, 해당 기능을 잘 쓰지 못하였다가 기존 함수 중 오타가 있는 부분이 있어 해당 부분을 수정하였습니다.
+
+2-1 입출금 시 시간표현 미구현
+입,출금 시 입,출금한 시간과 날짜가 표시되게끔 목적으로 만들었는데, 잘되지 않다가
+
+private void accountWithdrewal() { // 출금
+        sc.nextLine();
+        String account = getStrInput("계좌 번호를 입력 :");
+        String tradeDate;
+        int money = 0;
+        int newBalance = 0;
+
+        for (int i = 0; i < bankUsers.size(); i++) {
+
+            if (account.equals(bankUsers.get(i).getAccountNum())) { // 입력값과 기존 계좌번호가 동일한지 판별
+                money = getNumInput("출금액 입력 :");
+                if (Integer.parseInt(bankUsers.get(i).getBalance()) > money){
+                    newBalance = Integer.parseInt(bankUsers.get(i).getBalance()) - money; // Integer.parseInt(String s) 문자열을 정수 값으로 변환 후
+                    // 입금 금액 차감
+                    bankUsers.get(i).setTransactionDate(DateTimeFormatter.ofPattern("yyyy년MM월dd일 HH시mm분").format(LocalDateTime.now()));
+
+                    bankUsers.get(i).setMoney(money);
+                    bankUsers.get(i).setBalance(String.valueOf(newBalance)); // String.valueOf() 숫자 값을 문자열로 변환
+                    tradeDate = bankUsers.get(i).getTransactionDate();
+                    bankUsers.get(i).setTransactionDate(tradeDate);
+
+
+                    bankUsers.get(i).setIsDeposit(false);
+                    bankUsers.get(i).setIsWithdrawal(true);
+                    transactionHistory.add(new ClientManagement(bankUsers.get(i).getName(), bankUsers.get(i).getBankName(),
+                            account, String.valueOf(newBalance), money, tradeDate, bankUsers.get(i).getIsDeposit(), bankUsers.get(i).getIsWithdrawal()));
+                    // bankUsers.get(i).transactionTime();
+                    System.out.println(money + "원이 출금되었습니다. 현재 잔액: " + bankUsers.get(i).getBalance() + "원 입금날짜 :" + bankUsers.get(i).getTransactionDate());
+
+                    break;
+                }else{
+                    System.out.println("잔액이 부족합니다. 출금 가능액 :" + bankUsers.get(i).getBalance() + "원");
+                }
+
+            } else {
+                if (i < bankUsers.size() - 1) {
+                    continue;
+                } else {
+                    System.out.println("계좌 번호를 확인하세요.");
+                }
+                
+                위의 함수에서 다른 변수를 사용함으로서 해당 과정을 해결하였습니다.
