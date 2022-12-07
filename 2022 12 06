@@ -1,0 +1,98 @@
+스프링 입문 교육을 받았습니다.
+
+1. Database
+>> 데이터의 집합 
+
+# DBMS
+>> DBMS 는 ‘Database Management System’ 의 약자로 Database를 관리하고 운영하는 소프트웨어를 의미
+
+# RDBMS
+>> RDBMS는 ‘Relational DBMS’의 약자로 관계형 데이터베이스
+
+>> RDBMS는 테이블(table)이라는 최소 단위로 구성되며, 이 테이블은 열(column)과 행(row)으로 이루어져 있음
+
+# RDBMS의 종류
+- MySQL
+- PostgreSQL
+- Oracle Database
+
+2.  SQL
+>> SQL은 ‘Structured Query Language’ 의 약자로 RDBMS에서 사용되는 언어
+
+# DDL
+>>  Data Definition Language’ 의 약자로 테이블이나 관계의 구조를 생성하는데 사용
+
+-CREATE =  새로운 데이터베이스 및 테이블을 생성
+
+CREATE DATABASE 데이터베이스이름;
+CREATE TABLE 테이블이름
+(
+		필드이름1 필드타입1,
+    필드이름2 필드타입2,
+    ...
+);
+
+- ALTER  = 데이터베이스와 테이블의 내용을 수정
+
+ALTER TABLE 테이블이름 ADD 필드이름 필드타입;
+ALTER TABLE 테이블이름 DROP 필드이름;
+ALTER TABLE 테이블이름 MODIFY COLUMN 필드이름 필드타입;
+
+- DROP = 데이터베이스와 테이블을 삭제
+
+DROP DATABASE 데이터베이스이름;
+DROP TABLE 테이블이름;
+
+- TRUNCATE =   데이터베이스와 테이블을 삭제
+
+TRUNCATE DATABASE 데이터베이스이름;
+TRUNCATE TABLE 테이블이름;
+
+# DCL
+>> Data Control Language’ 의 약자로 데이터의 사용 권한을 관리하는데 사용
+
+- GRANT = 사용자 또는 ROLE에 대해 권한을 부여
+
+GRANT [객체권한명] (컬럼)
+ON [객체명]
+TO { 유저명 | 롤명 | PUBLC} [WITH GRANT OPTION];
+
+//ex
+GRANT SELECT ,INSERT 
+ON mp
+TO scott WITH GRANT OPTION;
+
+- REVOKE = 사용자 또는 ROLE에 부여한 권한을 회수
+
+REVOKE { 권한명 [, 권한명...] ALL}
+ON 객체명
+FROM {유저명 [, 유저명...] | 롤명(ROLE) | PUBLIC} 
+[CASCADE CONSTRAINTS];
+
+//ex
+REVOKE SELECT , INSERT
+ON emp
+FROM scott
+[CASCADE CONSTRAINTS];
+
+# DML 
+>> ‘Data Manipulation Language’ 의 약자로 테이블에 데이터를 검색, 삽입, 수정, 삭제하는데 사용
+
+- INSERT =  테이블에 새로운 row를 추가
+
+INSERT INTO 테이블이름(필드이름1, 필드이름2, 필드이름3, ...) VALUES(데이터값1, 데이터값2, 데이터값3, ...);
+INSERT INTO 테이블이름 VALUES(데이터값1, 데이터값2, 데이터값3, ...);
+
+
+- SELECT = 테이블의 row를 선택
+
+SELECT 필드이름 FROM 테이블이름 [WHERE 조건];
+
+- UPDATE =  테이블의 row의 내용을 수정
+
+UPDATE 테이블이름 SET 필드이름1=데이터값1, 필드이름2=데이터값2, ... WHERE 필드이름=데이터값;
+
+- DELETE : 테이블의 row를 삭제
+
+DELETE FROM 테이블이름 WHERE 필드이름=데이터값;
+
