@@ -1,0 +1,80 @@
+스프링 입문 교육 3일차
+
+1. 어플리케이션이 데이터베이스를 직접 다룰 때의 문제점
+
+#번거로움
+-예시 코드
+
+class User {
+	private int id;
+	private String name;
+	private int age;
+	private long salary;
+	...
+}
+
+테이블 만들기 - 직접db로 접속하여 sql쿼리문을 내보내기
+
+class User {
+	private int id;
+	private String name;
+	private int age;
+	private long salary;
+	...
+}
+
+쿼리를 jdbc api 통해 직접 실행
+
+ResultSet result = jdbcAPI.executeQuery(needToExecuteQuery);
+
+ 쿼리 결과로 해당 객체도 직접 만들기
+ 
+ User user = new User();
+
+user.setId(result.id);
+user.setName(result.name);
+user.setAge(result.age);
+user.setSalary(result.salary);
+
+2. SQL은 의존적이라 변경에 취약함
+
+-예시 코드
+class User {
+	private int id;
+	private String name;
+	private int age;
+	private long salary;
+
+	// 추가됨!
+	private int weight;
+	...
+}
+
+- 쿼리문을 직접 수정
+// String userSelectQuery = "select name, age, salary from user u where u.name = "
+
+String userSelectQuery = "select name, age, salary, weight from user u where u.name = "
+
+String userName = request.getHeader("name");
+
+String needToExecuteQuery = userSelectQuery + userName;
+
+
+-  유저객체에 값 넣어주는 부분 추가
+
+User user = new User();
+
+user.setId(result.id);
+user.setName(result.name);
+user.setAge(result.age);
+user.setSalary(result.salary);
+// 추가됨!
+user.setWeight(result.weight);
+
+3. 3. 객체지향 모델과 관계형 데이터베이스의 패러다임 불일치 발생 
+
+밀도문제 : 다양한 크기의 객체를 만들 수 있음, 커스텀한 타입 만들기 쉬움
+서브타입 문제 : 상속, 다형성 구현 쉬움
+식별성 문제 : 레퍼런스 동일성, 인스턴스 동일성
+관계 문제 : 서로간의 객체 참조를 통해 표현, 다대다 가능, 방향이 있다
+서로간의 객체 참조를 통해 표현, 다대다 가능, 방향이 있다 : 마음대로 레퍼런스타고 이동 가능
