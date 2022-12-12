@@ -1,0 +1,43 @@
+스프링 입문
+
+1. ORM,JPA
+
+>> 자바 ORM 기술에 대한 표준 명세
+
+#아래와 같은 역할 수행
+
+- 쿼리를 자동으로 만들어 줌
+- 그리고 어플리케이션 계층에서 sql 의존성을 줄여서 번거로운 작업이 매우매우 단축됨
+- 패러다임의 불일치를 해결해줌
+- 특정한 상황을 제외하고는,성능도 챙김
+- 방언도 지원해줍니다. h2 Databse를 붙여도, mySql, oracle 뭘 붙여도 코드의 변경은 없습니다, 관계형 db이자 표준을 준수한 sql을 지원한다면,
+jpa가 방언들도 알아서 처리해줌
+
+2 JPA샘플
+
+- @Entity // DB 테이블 역할을 합니다.
+public class User {
+		// ID가 자동으로 생성 및 증가합니다.
+	  @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    // nullable: null 허용 여부
+    // unique: 중복 허용 여부 (false 일때 중복 허용)
+    @Column(nullable = false, unique = true)
+    private String username;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false)
+    @Enumerated(value = EnumType.STRING)
+    private UserRoleEnum role;
+
+    @Column(unique = true)
+    private Long kakaoId;
+}
+
