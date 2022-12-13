@@ -1,0 +1,93 @@
+알고리즘 문제풀이 강의를 듣기위해 지난 알고리즘 강의를 다시 한번 들었습니다. 
+
+1. 알고리즘 과 친해지기
+
+(1)최대값 찾기
+
+-python 의 for ~ else 문은 “for문에서 break가 발생하지 않았을 경우”의 동작을 else문에 적어주는 것이다.
+
+-def find_max_num(array):
+    for num in array:
+        for compare_num in array:
+            if num < compare_num:
+                break
+        else:
+            return num
+
+
+print("정답 = 6 / 현재 풀이 값 = ", find_max_num([3, 5, 6, 1, 2, 4]))
+print("정답 = 6 / 현재 풀이 값 = ", find_max_num([6, 6, 6]))
+print("정답 = 1888 / 현재 풀이 값 = ", find_max_num([6, 9, 2, 7, 1888]))
+
+-def find_max_num(array):
+    max_num = array[0]
+    for num in array:
+        if num > max_num:
+            max_num = num
+    return max_num
+
+
+print("정답 = 6 / 현재 풀이 값 = ", find_max_num([3, 5, 6, 1, 2, 4]))
+print("정답 = 6 / 현재 풀이 값 = ", find_max_num([6, 6, 6]))
+print("정답 = 1888 / 현재 풀이 값 = ", find_max_num([6, 9, 2, 7, 1888]))
+
+#두개 중 효율적인 함수는 무엇인가 
+
+(2) 최빈값 찾기
+
+-문자인지 확인하는 방법 : 파이썬의 내장 함수 str.isalpha() 를 이용하면 해당 문자열이 알파벳인지 확인할 수 있음
+
+- def find_max_occurred_alphabet(string):
+    alphabet_array = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s",
+                      "t", "u", "v", "x", "y", "z"]
+    max_occurrence = 0
+    max_alphabet = alphabet_array[0]
+
+    for alphabet in alphabet_array:
+        occurrence = 0
+        for char in string:
+            if char == alphabet:
+                occurrence += 1
+
+        if occurrence > max_occurrence:
+            max_alphabet = alphabet
+            max_occurrence = occurrence
+
+    return max_alphabet
+
+
+result = find_max_occurred_alphabet
+print("정답 = a 현재 풀이 값 =", result("Hello my name is sparta"))
+print("정답 = a 현재 풀이 값 =", result("Sparta coding club"))
+print("정답 = s 현재 풀이 값 =", result("best of best sparta"))
+
+-
+def find_max_occurred_alphabet(string):
+    alphabet_occurrence_array = [0] * 26
+
+    for char in string:
+        if not char.isalpha():
+            continue
+        arr_index = ord(char) - ord('a')
+        alphabet_occurrence_array[arr_index] += 1
+
+    max_occurrence = 0
+    max_alphabet_index = 0
+    for index in range(len(alphabet_occurrence_array)):
+        alphabet_occurrence = alphabet_occurrence_array[index]
+        if alphabet_occurrence > max_occurrence:
+            max_occurrence = alphabet_occurrence
+            max_alphabet_index = index
+            
+       - 마찬가지로 어떤 함수가 더 효율적인지 계산
+       
+   2. 시간 복잡도
+   
+   >> 입력값과 문제를 해결하는 데 걸리는 시간과의 상관관계
+   
+   
+   3. 공간 복잡도
+   >> 입력값과 문제를 해결하는 데 걸리는 공간과의 상관관계
+   
+   4. 점근 표기법
+   >> 알고리즘의 성능을 수학적으로 표기하는 방법
