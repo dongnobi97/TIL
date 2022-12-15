@@ -1,0 +1,205 @@
+자바가 부족하다고 느낀 저는 자바 후발대수업을 신청하여 듣게되었습니다.
+금일 배운 내용을 정리하면서 til을 작성하겠습니다.
+
+1. 자바에서의 기본
+
+- 변수란 (변할 수 있는 값을 담는 저장공간)
+- 상수란
+- 자료형에 대한 정리
+- 연산자
+- 연산의 수행
+- 값은 오른쪽에서 왼쪽에 담긴다.
+- 코드는 위에서 아래로 흐른다.
+- 추가로 중요한점: 변수의 선언방식
+    
+    (언더스코어(_), 카멜표기법, 단 이 두 가지를 혼용 금지, 예약어를 변수나 메서드명으로 사용할 수 없음)
+    
+    # 실습 코드
+
+
+public class Day01 {
+    public static void main(String[] args) {
+                /* 출력하기
+        원하는 값으로 출력하기
+        1) Hello World!
+        2) 안녕 자바!
+        3) 안녕
+           자바!
+        */
+
+        System.out.println("Hello World!");
+        System.out.println("------1-------");
+        System.out.println("안녕 자바!");
+        System.out.println("안녕\t자바");
+        System.out.println("------2-------");
+        System.out.println("안녕");
+        System.out.println("자바");
+        System.out.println("안녕 \n자바");
+        System.out.println("------3-------");
+       
+
+
+        // 변수(변할 수 있는 값을 담는 저장공간)
+        // 코드는 오른쪽의 값을 왼쪽에 담는다.
+        // 변수의 선언방식
+        // 자료형 변수명 = 값; //변수의 선언과 코드의 흐름
+
+        int num = 3;
+        System.out.println(num);
+
+        String str = "반갑습니다";
+        System.out.println(str);
+        System.out.println(num);
+        // 코드의 흐름
+        str  ="오늘은 화요일";
+				// 하나의 스코프(예){}) 안에서는 기존요소의 값을 덮어쓸수 있습니다.
+
+        System.out.println(str);
+
+        // 컴파일시 코드는 아래서 흐르니까 변수에 값이 바뀐 시점에 이렇게 변경된 값을 출력해 줍니다.
+
+        // 기본자료형 (몇가지 예)
+        //char는 문자 하나를 담는 자료형으로 이렇게 작은 따옴표를 붙여서 작성을 합니다.
+        // 2바이트의 저장공간을 차지합니다.
+        char c = 'A';
+        int a = 10;
+        double b = 1.234;
+        float d = 1.234F;
+
+        System.out.println(c);
+        System.out.println(a);
+        System.out.println(b);
+        System.out.println(d);
+
+				// 자료형의 출력 범위 알아보기
+        System.out.println(Integer.MAX_VALUE);      
+				System.out.println(Integer.MIN_VALUE);        
+				System.out.println(Float.MAX_VALUE);        
+				System.out.println(Float.MIN_VALUE);
+
+
+
+        //산술 연산자
+				// +- */%  
+				// 예1)
+        int num1 = 10;
+        int num2 = 3;
+
+        System.out.println(num1+num2);
+        System.out.println(num1-num2);
+        System.out.println(num1*num2);
+        System.out.println(num1/num2);
+        System.out.println(num1%num2);
+
+        // 여기서  +는 연결과 연산으로 두가지로 기능을 합니다.
+        // 하나는 덧셈의 연산 이고 타입이 다를경우 두개를 연결 시켜주기도 합니다. 
+        // 연산자 실습
+
+        int n1 = 20;
+        int n2 = 30;
+        int n3 = 2;
+
+        n1 += n2;
+        System.out.println(n1);
+        // n1+n2 = n1; 의 의미
+        
+        n1 -=n3;
+        System.out.println(n1);
+
+        n1 /=n3;
+        System.out.println(n1);
+
+//        n1/=n1;
+//        System.out.println(n1);
+//         다시 코드는 위로 가서 값을 대입해주지 않습니다.
+        //자기자신을 나누는 연산하는 컴퓨터 연산을 수행
+        n1 %=n3;
+        System.out.println(n1);
+
+        // 상수& 키워드
+
+        final double PI = 3.14;
+        System.out.println(PI);
+//        PI = 3.14;
+//        System.out.println(PI);
+
+
+
+
+        // 관계연산자: 연산 결과는 무조건 (참 ) 또는 거짓
+
+        boolean y =true;
+        boolean n =false;
+
+        System.out.println(y==n);
+
+        int age = 20;
+        boolean isAdult = age >19;
+
+        boolean isKid = age <=19;
+
+        System.out.println(isAdult);
+        System.out.println(isKid);
+        System.out.println(age==20);
+
+       //Scanner
+
+	    // 자바에서 화면으로부터 데이터를 입력받는 기능을 제공하는 클래스
+			//java.util 패키지 내에 존재하는 클래스로서 정수, 실수, 
+			//문자열과 같은 기본적인 데이터 타입 입력을 받는다.
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("당신이 사는 도시는?");
+        String city = sc.nextLine();
+        System.out.println("사용자는 "+ city+ "에 삽니다.");
+
+        // 오늘 공부한것 간략히 키워드
+			  // 출력하기
+				// 변수란, (변할 수 있는 값을 저장하는 저장공간)
+				// 오른쪽의 값은 왼쪽저장공간에 담긴다.
+        // 상수 & 키워드
+        // 자료형
+        // 연산자 일부
+        // 스캐너
+        // 코드는 위에서 아래로 흐른다 
+
+        // ===퀴즈===
+        // 퀴즈 1
+        // 세개의 숫자를 각각 변수 선언하고 세수의 총합을 인쇄해보기
+              int i = 10;
+        int j = 20;
+        int k = 3;
+//        int sum = i+j+k;
+        System.out.println("세수의 합은 " + (i+j+k)+ " 입니다.");
+        // 퀴즈2
+        // 스캐너를 통해 가로와 세로를 입력받아 사각형의 넓이를 구해보기 (전체 주석 쳐 보기)
+
+        System.out.println("가로: ");
+        int x = sc.nextInt();
+        System.out.println("세로: ");
+        int y = sc.nextInt();
+
+        System.out.println("사각형의 넓이는 " + (x*y) + "입니다." );
+
+        // 퀴즈3
+        // 스캐너로 나이를 입력받아 내년 나이를 구해보기
+//        Scanner sc = new Scanner(System.in);
+
+        System.out.println("나이: ");
+        int age2 = sc.nextInt();
+        System.out.println("내년에 나이는 " + (age2 + 1) + "살 입니다.");
+
+				// 퀴즈4
+        // 두수를 입력받아 몫과 나머지 구하기
+
+        System.out.println(" a를 입력하세요:");
+        int a =sc.nextInt();
+        System.out.println(" b를 입력하세요:");
+        int b = sc.nextInt();
+
+        System.out.println("a/b 의 몫은 "+(a/b)+ "입니다.");
+        System.out.println("a/b 의 나머지는 "+(a%b)+ "입니다.");
+    }
+}
+
+직접 실습하며, 다시 복습하니 머리속에 더 잘 이해되는 느낌이었습니다.
