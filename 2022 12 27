@@ -1,0 +1,62 @@
+1. 문제점
+처음 복습 과정에서 기존에 아무 자바나 열어서 실행하였더니 에러가 발생
+
+
+2. 시도한 것
+자바 버전이나 다른 부분이 문제가있는지 찾고,새로 파일을 생성하여 시도
+
+3. 해결한 것
+에러없이 실습코드를 실행 할 수있었고,
+원인이 무엇인지는 파악하지 못하였음
+
+4. 알게된 것
+
+## 실습 코드 
+
+class Phone {
+    String model;
+    String color;
+    int price;
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Phone galaxy = new Phone(); 
+        galaxy.model = "Galaxy10";
+        galaxy.color = "Black";
+        galaxy.price = 100;
+        
+        Phone iphone =new Phone();
+        iphone.model = "iPhoneX";
+        iphone.color = "Black";
+        iphone.price = 200;
+        
+
+        System.out.println("철수는 이번에 " + galaxy.model + galaxy.color + " + 색상을 " + galaxy.price + "만원에 샀다.");
+        System.out.println("영희는 이번에 " + iphone.model + iphone.color + " + 색상을 " + iphone.price + "만원에 샀다.");
+    }
+}
+
+##실습 코드 2
+
+class Calculation {
+    int add(int x, int y){
+        return x + y;
+    }
+    int subtract(int x, int y){
+        return x - y;
+    }
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+        // write your code here
+    Calculation calculation = new Calculation();
+    int addResult = calculation.add(1,2);
+    int subtractResult = calculation.subtract(5,3);
+
+        System.out.println(addResult);
+        System.out.println(subtractResult);
+    }
+}
