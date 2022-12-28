@@ -1,0 +1,37 @@
+1.문제점
+C:\Users\sksms\OneDrive\바탕 화면\java\sparta_java\src\main\java\Main.java:21: error: cannot reference name before supertype constructor has been called
+        super(name);
+              ^
+해당 오류 발생
+2. 시도한 것
+클래스 생성시 오타 부분 수정, 대소문자 구분
+
+
+3. 해결한 것
+# 실습코드
+class Dog extends Animal {
+
+    Dog(String name) {
+        this.name = name;
+    }
+
+    public void cry() {
+        System.out.println(name + " is barking!");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal dog = new Dog("코코");
+        dog.cry();
+    }
+
+
+4. 알게된 것
+윈도우 기준 alt+insert를 통해 생성자를 만들 수 있고, 쉬프트를 눌러 전체선택 할 수 있다는 점
+오버로딩과 오버라이딩의 차이 오버라이딩 = 덮어쓰기
+접근제어자의 크기 
+private     →     default     →     protected     →     public
+
+
+
