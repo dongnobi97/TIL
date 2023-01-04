@@ -1,0 +1,58 @@
+1.문제점 
+코드가 실행되지않음
+
+
+2.시도한 것
+
+public int Pw() {
+        return pw;
+    }
+    public void setPw(int pw) {
+        this.pw = pw;
+        System.out.println("비밀번호 변경완료!")
+
+
+
+3.해결한 것
+
+for(int i=0;i<3;i++) {
+            System.out.print("이름: ");
+            String name=sc.nextLine();
+            System.out.print("비밀번호: ");
+            int pw=sc.nextInt();
+            System.out.print("잔액: ");
+            int bal=sc.nextInt();
+            // 버퍼를 비워줌
+            sc.nextLine(;
+            c[i]=new Card(name,pw,bal);
+        }
+
+
+
+
+4.알게된 것
+# Card[] c=new Card[3]; >> 3을 담는다는 의미
+
+# //결제
+        // 비밀번호 일치여부 확인> 5000원씩 결제되는 프로그램을 구현
+        for(int i=0;i<3;i++) {
+            System.out.println(c[i].user+"님, 결제진행중입니다.");
+            System.out.print("pw입력: ");
+            int pw=sc.nextInt();
+            // 비밀번호 일치시 먼저 else 까지 쓰고
+            if(pw==c[i].getPw()) {
+                // 그안에 비밀번호 일치시 처리할 로직을 구현하고
+                if(c[i].bal<5000) {
+                    System.out.println("잔액부족!");
+                }
+                else {
+                    c[i].bal-=5000;
+                    System.out.println("결제완료");
+                }
+            }
+            else {
+                System.out.println("비밀번호 불일치!");
+            }
+        }
+
+>> [i] 를 사용하여 변수를 받는다
