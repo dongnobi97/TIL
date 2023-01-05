@@ -1,0 +1,34 @@
+스프링 심화 팀 프로젝트
+
+1. 문제점
+스프링을 아직 잘 못해서 익숙하지 않다는 것
+조원들과 함께 공부하며,시도  
+
+2. 시도한 것
+5가지를 생각한다
+
+1번 이 메서드의 기능은?   
+=>컨트롤러의 로그인 기능
+2번 이 메서드의 받아야 하는 데이터는 뭔지? 
+=> signin ,username , password
+3번 보내줘야하는 데이터는 뭔지? 어떤 결과값을 내보내줄건지?
+=>  로그인성공 (String) , / 아이디 또는 비밀번호를 확인해주세요, 로그인 실패
+4번 어떻게 동작을 할지 ? 로직을 생각 
+=>    if / else  : 로그인 성공 혹은 실패를 내보내주고 싶다.
+5번 로직을 하기 위한 필드값 생각
+
+
+
+
+3. 해결한 것 
+ @PostMapping("/signin")  
+    public SigninResponseDto signin(@RequestBody SigninRequestDto signinRequestDto, HttpServletResponse response) {
+
+       // 사용자 id 및 비밀번호 확인
+        String create = userService.signin(signinRequestDto);
+        response.addHeader(JwtUtil.AUTHORIZATION_HEADER,create);
+
+
+
+4. 알게된 것
+로그인 기능을 만들 때 회원가입에 사용한 유저서비스 부분을 활용하여 메소드와 변수를 설정할 수있는 것
