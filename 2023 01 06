@@ -1,0 +1,35 @@
+스프링 심화 프로젝트를 마치며 후발대 자바 복습
+
+
+1. 문제점
+튜터님이 내주시는 문제를 전부 다풀지 못한 것 
+
+2. 시도한 것
+ Scanner sc = new Scanner(System.in);
+            System.out.println("가위(1), 바위(2), 보(3): ");
+            int user = sc.nextInt();
+
+가위바위보 까지는 하였느나 이후  경우의 수를 어떻게 해야할지 몰랐음.
+
+3. 해결한 것
+
+if(cpu == 1 && user == 2 || cpu ==2 && user ==3 || cpu ==3 && user ==1) {
+                System.out.println("이겼습니다.");
+            } else if (cpu == user) {
+                System.out.println("비겼습니다.");
+
+            }else {
+                System.out.println("졌습니다. ");
+            }
+
+3가지 경우의 수를 설정하기
+
+
+4. 알게된 것 
+||를 사용하여 3가지 경우를 설정할 수 있다 (예시 가위바위보)
+접근제어자의 상세의미
+	private   => 클래스 외부에서 접근할 수 없다.
+	protected => 현재 클래스와 현재 클래스를 상속받은 자식 클래스에서만 접근할 수 있다.
+	package   => 같은 패키지에서는 public 처럼 사용되고 다른 패키지에서는 private 처럼 사용된다.
+	public    => 프로젝트 내부의 모든 클래스에서 자유롭게 접근할 수 있다.
+
