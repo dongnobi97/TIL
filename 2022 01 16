@@ -1,0 +1,65 @@
+1.문제점: 문제를 풀지 못함 (실습 코드)
+
+
+2.시도한 것:
+
+
+
+
+3. 해결한 것:
+
+#실습 코드
+
+// 2) 인터페이스 실습예제 : 자율 주행차
+interface OperateCar{
+    void start();
+    void stop();
+    void setSpeed(int speed);
+    void turn(int degree);
+}
+
+class AutoCar implements OperateCar{
+
+    @Override
+    public void start() {
+        System.out.println("자동차가 출발합니다.");
+    }
+
+    @Override
+    public void stop() {
+        System.out.println("자동차가 정지합니다.");
+    }
+
+    @Override
+    public void setSpeed(int speed) {
+        System.out.println("자동차가 속도를 " + speed + "km/h 로 바꿉니다.");
+    }
+
+    @Override
+    public void turn(int degree) {
+        System.out.println("자동차가 방향을 " +degree +"도 만큼 바꿉니다.");
+
+    }
+}
+
+public class Prac {
+    public static void main(String[] args) {
+// 인터페이스는 그 기능을 꼭 구현할 것을 강제하므로 동작을 할 거라고 보장할 수 있다. 
+            OperateCar car = new AutoCar();
+            car.start();
+            car.setSpeed(30);
+            car.turn(30);
+            car.stop();
+    }
+}
+
+
+
+4. 알게된 것:
+- 추상클래스 키워드 :abstract
+- 자식 클래스에서는 extends로 추상클래스를 상속받아 구현
+- 미구현된 부분을 오버라이딩 하여 꼭 구현을 해주어야 함
+- 추상클래스 그 자체로는 객체 생성을 할 수 없다.
+- 자손클래스에서 미구현된 부분을 다 구현했다면, 부모타입인 abstract 클래스의 타입으로도
+
+       객체 생성이 가능. (다형성)
